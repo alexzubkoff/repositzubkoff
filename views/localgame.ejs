@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Black Jack</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<style type="text/css">
+	#blackjack{
+		position: absolute;
+		width: 1320px;
+		height: 630px;
+		border-style: ridge;
+	}
+	#blackjack2{
+		position: absolute;
+		width: 1320px;
+		height: 130px;
+		background-image:url("Foto/black-jack.jpg");
+		border-bottom: ridge;
+	}
+	#localgame{
+		position: absolute;
+		right: 10px;
+		top: 140px;
+		width: 300px;
+		height: 210px;
+		/*border-style: ridge;*/
+	}
+	#screen{
+		width: 300px;
+		height: 50px;
+	}
+	#stat{
+		position: absolute;
+		width: 300px;
+		height: 220px;
+		right: 30px;
+		top: 400px;
+		border-style:ridge;
+	}
+	#stat1,#stat2,#stat3,#stat4,#stat5{
+		position: absolute;
+		/*right: 180px;*/		
+	}
+	#stat1{
+		top:450px;
+		right: 265px;
+	}
+	#stat2{
+		top:480px;
+		right: 250px;
+	}
+	#stat3{
+		top:510px;
+		right: 215px;
+	}
+	#stat4{
+		top:540px;
+		right: 132px;
+	}
+	#stat5{
+		top:570px;
+		right: 125px;
+	}
+	#stavki{
+		position: absolute;
+		top: 170px;
+		left: 700px;
+		width: 220px;
+		height: 150px;
+		background-image: url("Foto/1979.230.JPG");
+	}
+	#sel{
+		width: 200px;
+	}
+	#cardsdistrib{
+		position: absolute;
+		top: 340px;
+		left: 720px;
+		width: 220px;
+		height: 250px;
+		background-image: url("Foto/poker_card_4010.jpg");
+	}
+	#distrib,#takecard,#skip{
+		position: absolute;
+		top: 50px;
+		right: 90px;
+		width: 100px;
+	}
+	#takecard{
+		top: 102px;
+	}
+	#skip{
+		top: 160px;
+	}
+	#bank{
+		position: absolute;
+		border-right-style: ridge;
+		border-bottom-style: ridge;
+		width: 100px;
+		height: 50px;
+		top:145px;
+		left:12px;
+		text-align: center;
+		font-size: 20px;
+		background-color: #00FF7F;
+	}
+	#sum{
+		position: absolute;
+		border-right-style: ridge;
+		border-top-style: ridge;
+		width: 100px;
+		height: 50px;
+		top:587px;
+		left:12px;
+		text-align: center;
+		font-size: 20px;
+		background-color: #00FF7F;
+
+	}
+	#savegame{
+		position: absolute;
+		top: 600px;
+		right: 515px;
+		width: 100px;
+	}
+	#cleartable{
+		position: absolute;
+		top: 550px;
+		right: 515px;
+		width: 100px;
+	}
+	/*#cardsbody{
+		position: absolute;
+		left:20px;
+		top:350px;
+		display: none;
+	}*/
+	#cardstable{
+		position:absolute;
+		top: 450px;
+		left:90px;
+		width:640px;
+		height: 100px;
+	}
+	#cardstable>div{
+		width:70px;
+		height: 100px;
+		margin:15px;
+		float: left;
+	}
+	/*#oponentcard{
+		position:absolute;
+		left:190px;
+		top:170px;
+		width: 72px;
+		height: 105px;
+		display: none;
+	}*/
+	#oponenttable{
+		position: absolute;
+		left:210px;
+		top:160px;		
+		width: 427px;
+		height: 104px;
+		
+	}
+	#oponenttable>div{
+		width: 72px;
+		height: 105px;
+		margin: 5px;
+		float:left;
+		
+	}
+	#blackjackimage{
+		position: absolute;
+		width: 385px;
+		height: 130px;
+		top:300px;
+		left:230px;
+		background-image: url("Foto/images.jpg");
+	}
+	#netgame{
+		position: absolute;
+		top:250px;
+		right: 40px;
+	}
+
+	</style>
+</head>
+<body>
+<div id="blackjack">
+<div id="blackjack2"></div>
+<div id="localgame"><h1>Локальная игра</h1></div>
+<button id="netgame" onclick="window.location.href='/netgame'">Сетевая игра</button>
+
+<!-- <form id="formchat">
+<input id="screen" type="text" name="chat" placeholder="Введите сообщение вашему сопернику"></input>
+<input type="submit"></input>
+<div id="answerscreen"></div>
+</form> -->
+<div id="stat"><h3>Статистика:</h3></div>
+<div id="stat1">Игр:    <span></span></div>
+<div id="stat2">Побед:  <span></span></div>
+<div id="stat3">Поражений:  <span></span></div>
+<div id="stat4">Сумма выигрышей:  <span></span>грн.</div>
+<div id="stat5">Сумма проигрышей: <span></span>грн.</div>
+
+</div>
+<div id="stavki">
+<p><select id="sel" name="sumstavki">
+	<option value=0>Ставок нет</option>
+    <option value=100>Размер ставки 100 грн.</option>
+    <option value=200>Размер ставки 200 грн.</option>
+    <option value=500>Размер ставки 500 грн.</option>
+    <option value=1000>Размер ставки 1000 грн.</option>
+  </select></p>
+</div>
+
+<div id="cardsdistrib">
+<button id="distrib">Раздать</button><br>
+<button id="takecard">Добрать</button><br>
+<button id="skip">Пропуск</button>
+</div>
+<div id="bank">Банк:<br><span></span>грн.</div>
+
+<div id="sum">Сумма:<br><span>0</span>грн.</div>
+
+<button id="savegame">Сохранить игру</button>
+<button id="cleartable">Очистить</button>
+</div>
+<div id="cardsbody">
+<div id="cardsize" style="background-image:url('Foto/Cards/buba_2.gif')" data-position=1 data-weight=2></div>
+<div id="cardsize2" style="background-image:url('Foto/Cards/buba_3.gif')" data-position=2 data-weight=3></div>
+<div id="cardsize3" style="background-image:url('Foto/Cards/buba_4.gif')" data-position=3 data-weight=4></div>
+<div id="cardsize4" style="background-image:url('Foto/Cards/buba_5.gif')" data-position=4 data-weight=5></div>
+<div id="cardsize5" style="background-image:url('Foto/Cards/buba_6.gif')" data-position=5 data-weight=6></div>
+<div id="cardsize6" style="background-image:url('Foto/Cards/buba_7.gif')" data-position=6 data-weight=7></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_8.gif')" data-position=7 data-weight=8></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_9.gif')" data-position=8 data-weight=9></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_10.gif')" data-position=9 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_A.gif')" data-position=10 data-weight=11></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_J.gif')" data-position=11 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_K.gif')" data-position=12 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/buba_Q.gif')" data-position=13 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_2.gif')" data-position=14 data-weight=2></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_3.gif')" data-position=15 data-weight=3></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_4.gif')" data-position=16 data-weight=4></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_5.gif')" data-position=17 data-weight=5></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_7.gif')" data-position=18 data-weight=7></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_8.gif')" data-position=19 data-weight=8></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_9.gif')" data-position=20 data-weight=9></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_10.gif')" data-position=21 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_A.gif')" data-position=22 data-weight=11></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_J.gif')" data-position=23 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_K.gif')" data-position=24 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/cherv_Q.gif')" data-position=25 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_2.gif')" data-position=26 data-weight=2></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_3.gif')" data-position=27 data-weight=3></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_4.gif')" data-position=28 data-weight=4></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_5.gif')" data-position=29 data-weight=5></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_6.gif')" data-position=30 data-weight=6></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_7.gif')" data-position=31 data-weight=7></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_8.gif')" data-position=32 data-weight=8></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_10.gif')" data-position=33 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_A.gif')" data-position=34 data-weight=11></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_J.gif')" data-position=35 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_K.gif')" data-position=36 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/krest_Q.gif')" data-position=37 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_2.gif')" data-position=38 data-weight=2></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_3.gif')" data-position=39 data-weight=3></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_4.gif')" data-position=40 data-weight=4></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_5.gif')" data-position=41 data-weight=5></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_6.gif')" data-position=42 data-weight=6></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_7.gif')" data-position=43 data-weight=7></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_8.gif')" data-position=44 data-weight=8></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_9.gif')" data-position=45 data-weight=9></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_10.gif')" data-position=46 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_A.gif')" data-position=47 data-weight=11></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_J.gif')" data-position=48 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_K.gif')" data-position=49 data-weight=10></div>
+<div class="cardsize" style="background-image:url('Foto/Cards/pika_Q.gif')" data-position=50 data-weight=10></div>
+
+<div id="cardstable">
+	 <div></div> 
+</div>
+<div id="oponcards">
+<div id="oponentcard" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponentcard2" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponentcard3" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponentcard4" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponentcard5" style="background-image:url('Foto/cardbacks3.png')"></div>
+</div>
+<div id="oponenttable"></div>
+</div>
+<div id="blackjackimage"></div>
+
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Black Jack</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
+	<style type="text/css">
+	#blackjack{
+		position: absolute;
+		width: 1320px;
+		height: 630px; 
+		border-style: ridge;
+	}
+	#blackjack2{
+		position: absolute;
+		width: 1320px;
+		height: 130px;
+		background-image:url("Foto/black-jack.jpg");
+		border-bottom: ridge;
+	}
+	#formchat{
+		position: absolute;
+		right: 30px;
+		top: 150px;
+		width: 300px;
+		height: 237px;
+		border-style: ridge;
+		/*display: none;*/
+		display: block;
+		overflow-x: auto;
+	}
+	#screen{
+		width: 297px;
+		height: 50px;
+		/*display: none;*/
+		font-size: 13px;
+		display: block;
+		/*overflow: auto;*/
+	}
+	#stat{
+		position: absolute;
+		width: 300px;
+		height: 220px;
+		right: 30px;
+		top: 400px;
+		border-style:ridge;
+	}
+	#stat1,#stat2,#stat3,#stat4,#stat5{
+		position: absolute;
+		/*right: 180px;*/		
+	}
+	#stat1{
+		top:450px;
+		right: 265px;
+	}
+	#stat2{
+		top:480px;
+		right: 250px;
+	}
+	#stat3{
+		top:510px;
+		right: 215px;
+	}
+	#stat4{
+		top:540px;
+		right: 132px;
+	}
+	#stat5{
+		top:570px;
+		right: 125px;
+	}
+	#stavki{
+		position: absolute;
+		top: 170px;
+		left: 700px;
+		width: 220px;
+		height: 150px;
+		background-image: url("Foto/1979.230.JPG");
+	}
+	#sel{
+		width: 200px;
+		cursor: pointer;
+	}
+	#cardsdistrib{
+		position: absolute;
+		top: 340px;
+		left: 720px;
+		width: 220px;
+		height: 250px;
+		background-image: url("Foto/poker_card_4010.jpg");
+	}
+	#distrib,#takecard,#skip{
+		position: absolute;
+		top: 50px;
+		right: 90px;
+		width: 100px;
+		cursor: pointer;
+	}
+	#takecard{
+		top: 102px;
+	}
+	#skip{
+		top: 160px;
+	}
+	#bank{
+		position: absolute;
+		border-right-style: ridge;
+		border-bottom-style: ridge;
+		width: 100px;
+		height: 50px;
+		top:145px;
+		left:12px;
+		text-align: center;
+		font-size: 20px;
+		background-color: #00FF7F;
+	}
+
+	#playercredit{
+		position: absolute;
+		border-right-style: ridge;
+		border-bottom-style: ridge;
+		border-top-style: ridge;
+		width: 100px;
+		height: 70px;
+		top:340px;
+		left:12px;
+		text-align: center;
+		font-size: 20px;
+		background-color: #00FF7F;
+	}
+	#sum{
+		position: absolute;
+		border-right-style: ridge;
+		border-top-style: ridge;
+		width: 100px;
+		height: 50px;
+		top:587px;
+		left:12px;
+		text-align: center;
+		font-size: 20px;
+		background-color: #00FF7F;
+
+	}
+	#savegame{
+		position: absolute;
+		top: 600px;
+		right: 545px; 
+		/*right: 885px;*/
+		width: 100px;
+		cursor: pointer;
+	}
+	#exitgame{
+		position: absolute;
+		top: 600px;
+		right: 440px; 
+		/*right: 775px;*/
+		width: 100px;
+		cursor: pointer;
+	}
+	#cleartable{
+		position: absolute;
+		top: 550px;
+		right: 515px; 
+		/*right: 833px;*/
+		width: 100px;
+		cursor: pointer;
+	}
+	/*#cardsbody{
+		position: absolute;
+		left:20px;
+		top:350px;
+		display: none;
+	}*/
+	#cardstable{
+		position:absolute;
+		top: 450px;
+		left:90px;
+		width:640px;
+		height: 100px;
+	}
+	#cardstable>div{
+		width:70px;
+		height: 100px;
+		margin:15px;
+		float: left;
+	}
+	/*#oponentcard{
+		position:absolute;
+		left:190px;
+		top:170px;
+		width: 72px;
+		height: 105px;
+		display: none;
+	}*/
+	#oponenttable{
+		position: absolute;
+		left:210px;
+		top:160px;		
+		width: 427px;
+		height: 104px;
+		
+	}
+	#oponenttable>div{
+		width: 72px;
+		height: 105px;
+		margin: 5px;
+		float:left;
+		
+	}
+	#blackjackimage{
+		position: absolute;
+		width: 385px;
+		height: 130px;
+		top:300px;
+		left:230px;
+		background-image: url("Foto/images.jpg");
+	}
+	#nicname{
+		position: absolute;
+		right: 30px;
+		top: 190px;
+		width: 300px;
+		height: 30px;
+		/*border-style: ridge;*/
+		/*display: block;*/
+		display: none;
+	}
+	/*#msg{
+		width: 300px;
+		height: 50px;
+		display: block;
+		/*display: none;
+	}
+	/*.unvisible{
+		display: none;
+	}*/
+	.visible { 
+		display: block !important;
+		}
+	#messprint{
+		    position: absolute;
+		    top:60px;
+		    right: 50px;
+			display: none;
+	}
+	#messages{
+		width: 297px;
+		height: 237px;
+		display: inline-block;
+		overflow-y: auto;
+
+	}
+	 #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+
+     #clock{
+     	position: absolute;
+     	left: 10px;
+     	top: 180px;
+     } 
+	</style>
+</head>
+<body>
+<div id="blackjack">
+<div id="blackjack2"></div>
+
+<div id="clock" ng-app="myApp" ng-controller="myCtrl">
+
+<h2>Часы:</h2>
+
+<h2>{{theTime}}</h2>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $interval) {
+  $scope.theTime = new Date().toLocaleTimeString();
+  $interval(function () {
+      $scope.theTime = new Date().toLocaleTimeString();
+  }, 1000);
+});
+</script>
+
+
+<form id="formchat">
+<input id="screen" type="text" name="chat" placeholder="Чат. Введите сообщение вашему сопернику."></input>
+<input type="submit" style="cursor: pointer;"></input>
+
+<div id="answerscreen"><div id="messprint"><span></span>печатает...</div>
+<ul id="messages"></ul>
+</div>
+</form>
+<div id="dialog"><ul></ul></div>
+<form id="nicname">
+<input  id="msg" autocomplete="off"  placeholder="Чат. Введите ваш ник."></input>
+<button>Отправить</button>
+<!-- <div id="answerscreen"></div> -->
+</form>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+      function sendChatMsg(){
+        socket.emit("chat",$("#screen").val());
+        $("#screen").val('');
+        return false;
+      }
+
+      function sendOponCards(){
+		socket.emit("oponcardsdistrib",{cardsamount:2});
+        return false;
+	}
+
+      var socket = io();
+     		
+		$("#formchat").on("submit",function(){
+			sendChatMsg();
+			return false;
+		});
+		
+		
+      	socket.on('chat', function(msg){
+			
+        $('#messages').append("<li>"+msg+"</li>");
+      	});
+
+    </script>
+
+
+<div id="stat"><h3>Статистика:</h3></div>
+<div id="stat1">Игр:    <span></span></div>
+<div id="stat2">Побед:  <span></span></div>
+<div id="stat3">Поражений:  <span></span></div>
+<div id="stat4">Сумма выигрышей:  <span></span>грн.</div>
+<div id="stat5">Сумма проигрышей: <span></span>грн.</div>
+
+</div>
+<div id="stavki">
+<p><select id="sel" name="sumstavki" >
+	<option value=0>Ставок нет</option>
+    <option value=100>Размер ставки 100 грн.</option>
+    <option value=200>Размер ставки 200 грн.</option>
+    <option value=500>Размер ставки 500 грн.</option>
+    <option value=1000>Размер ставки 1000 грн.</option>
+  </select></p>
+</div>
+
+<div id="cardsdistrib">
+<button id="distrib">Раздать</button><br>
+<button id="takecard">Добрать</button><br>
+<button id="skip">Открыть</button>
+</div>
+<div id="bank">Банк:<br><span>0</span> грн.</div>
+
+<div id="playercredit">Ваш кредит:<br><span>1500</span> грн.</div>
+
+<div id="sum">Сумма:<br><span>0</span> грн.</div>
+
+<button id="savegame">Сохранить игру</button>
+<button id="cleartable">Очистить</button>
+<button id="exitgame" > <!-- <a href="/"> -->Выйти из игры<!-- </a> --></button>
+</div>
+<div id="cardsbody">
+<div id="cardsize" name="buba_2" style="background-image:url('Foto/Cards/buba_2.gif')" data-position=1 data-weight=2></div>
+<div id="cardsize2" name="buba_3" style="background-image:url('Foto/Cards/buba_3.gif')" data-position=2 data-weight=3></div>
+<div id="cardsize3" name="buba_4" style="background-image:url('Foto/Cards/buba_4.gif')" data-position=3 data-weight=4></div>
+<div id="cardsize4" name="buba_5" style="background-image:url('Foto/Cards/buba_5.gif')" data-position=4 data-weight=5></div>
+<div id="cardsize5" name="buba_6" style="background-image:url('Foto/Cards/buba_6.gif')" data-position=5 data-weight=6></div>
+<div id="cardsize6" name="buba_7" style="background-image:url('Foto/Cards/buba_7.gif')" data-position=6 data-weight=7></div>
+<div class="cardsize" name="buba_8" style="background-image:url('Foto/Cards/buba_8.gif')" data-position=7 data-weight=8></div>
+<div class="cardsize" name="buba_9" style="background-image:url('Foto/Cards/buba_9.gif')" data-position=8 data-weight=9></div>
+<div class="cardsize" name="buba_10" style="background-image:url('Foto/Cards/buba_10.gif')" data-position=9 data-weight=10></div>
+<div class="cardsize" name="buba_A" style="background-image:url('Foto/Cards/buba_A.gif')" data-position=10 data-weight=11></div>
+<div class="cardsize" name="buba_J" style="background-image:url('Foto/Cards/buba_J.gif')" data-position=11 data-weight=10></div>
+<div class="cardsize" name="buba_K" style="background-image:url('Foto/Cards/buba_K.gif')"data-position=12 data-weight=10></div>
+<div class="cardsize" name="buba_Q" style="background-image:url('Foto/Cards/buba_Q.gif')" data-position=13 data-weight=10></div>
+
+<div class="cardsize" name="cherv_2" style="background-image:url('Foto/Cards/cherv_2.gif')" data-position=14 data-weight=2></div>
+<div class="cardsize" name="cherv_3" style="background-image:url('Foto/Cards/cherv_3.gif')" data-position=15 data-weight=3></div>
+<div class="cardsize" name="cherv_4"style="background-image:url('Foto/Cards/cherv_4.gif')" data-position=16 data-weight=4></div>
+<div class="cardsize" name="cherv_5" style="background-image:url('Foto/Cards/cherv_5.gif')" data-position=17 data-weight=5></div>
+<div class="cardsize" name="cherv_7" style="background-image:url('Foto/Cards/cherv_7.gif')" data-position=18 data-weight=7></div>
+<div class="cardsize" name="cherv_8" style="background-image:url('Foto/Cards/cherv_8.gif')" data-position=19 data-weight=8></div>
+<div class="cardsize" name="cherv_9" style="background-image:url('Foto/Cards/cherv_9.gif')" data-position=20 data-weight=9></div>
+<div class="cardsize" name="cherv_10" style="background-image:url('Foto/Cards/cherv_10.gif')" data-position=21 data-weight=10></div>
+<div class="cardsize" name="cherv_A" style="background-image:url('Foto/Cards/cherv_A.gif')" data-position=22 data-weight=11></div>
+<div class="cardsize" name="cherv_J" style="background-image:url('Foto/Cards/cherv_J.gif')" data-position=23 data-weight=10></div>
+<div class="cardsize" name="cherv_K" style="background-image:url('Foto/Cards/cherv_K.gif')" data-position=24 data-weight=10></div>
+<div class="cardsize" name="cherv_Q" style="background-image:url('Foto/Cards/cherv_Q.gif')" data-position=25 data-weight=10></div>
+
+<div class="cardsize" name="krest_2" style="background-image:url('Foto/Cards/krest_2.gif')" data-position=26 data-weight=2></div>
+<div class="cardsize" name="krest_3" style="background-image:url('Foto/Cards/krest_3.gif')" data-position=27 data-weight=3></div>
+<div class="cardsize" name="krest_4" style="background-image:url('Foto/Cards/krest_4.gif')" data-position=28 data-weight=4></div>
+<div class="cardsize" name="krest_5" style="background-image:url('Foto/Cards/krest_5.gif')" data-position=29 data-weight=5></div>
+<div class="cardsize" name="krest_6" style="background-image:url('Foto/Cards/krest_6.gif')" data-position=30 data-weight=6></div>
+<div class="cardsize" name="krest_7" style="background-image:url('Foto/Cards/krest_7.gif')" data-position=31 data-weight=7></div>
+<div class="cardsize" name="krest_8" style="background-image:url('Foto/Cards/krest_8.gif')" data-position=32 data-weight=8></div>
+<div class="cardsize" name="krest_10" style="background-image:url('Foto/Cards/krest_10.gif')" data-position=33 data-weight=10></div>
+<div class="cardsize" name="krest_A" style="background-image:url('Foto/Cards/krest_A.gif')" data-position=34 data-weight=11></div>
+<div class="cardsize" name="krest_J" style="background-image:url('Foto/Cards/krest_J.gif')" data-position=35 data-weight=10></div>
+<div class="cardsize" name="krest_K" style="background-image:url('Foto/Cards/krest_K.gif')" data-position=36 data-weight=10></div>
+<div class="cardsize" name="krest_Q" style="background-image:url('Foto/Cards/krest_Q.gif')" data-position=37 data-weight=10></div>
+
+<div class="cardsize" name="pika_2" style="background-image:url('Foto/Cards/pika_2.gif')" data-position=38 data-weight=2></div>
+<div class="cardsize" name="pika_3" style="background-image:url('Foto/Cards/pika_3.gif')" data-position=39 data-weight=3></div>
+<div class="cardsize" name="pika_4" style="background-image:url('Foto/Cards/pika_4.gif')" data-position=40 data-weight=4></div>
+<div class="cardsize" name="pika_5" style="background-image:url('Foto/Cards/pika_5.gif')" data-position=41 data-weight=5></div>
+<div class="cardsize" name="pika_6" style="background-image:url('Foto/Cards/pika_6.gif')" data-position=42 data-weight=6></div>
+<div class="cardsize" name="pika_7" style="background-image:url('Foto/Cards/pika_7.gif')" data-position=43 data-weight=7></div>
+<div class="cardsize" name="pika_8" style="background-image:url('Foto/Cards/pika_8.gif')" data-position=44 data-weight=8></div>
+<div class="cardsize" name="pika_9" style="background-image:url('Foto/Cards/pika_9.gif')" data-position=45 data-weight=9></div>
+<div class="cardsize" name="pika_10" style="background-image:url('Foto/Cards/pika_10.gif')" data-position=46 data-weight=10></div>
+<div class="cardsize" name="pika_A" style="background-image:url('Foto/Cards/pika_A.gif')" data-position=47 data-weight=11></div>
+<div class="cardsize" name="pika_J" style="background-image:url('Foto/Cards/pika_J.gif')" data-position=48 data-weight=10></div>
+<div class="cardsize" name="pika_K"style="background-image:url('Foto/Cards/pika_K.gif')" data-position=49 data-weight=10></div>
+<div class="cardsize"name="pika_Q" style="background-image:url('Foto/Cards/pika_Q.gif')" data-position=50 data-weight=10></div>
+
+<div id="cardstable">
+	 <div></div> 
+</div>
+<div id="oponcards">
+<div id="oponcard1" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponcard2" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponcard3" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponcard4" style="background-image:url('Foto/cardbacks3.png')"></div>
+<div id="oponcard5" style="background-image:url('Foto/cardbacks3.png')"></div>
+</div>
+<div id="oponenttable"></div>
+<div id="blackjackimage"></div>
+
+<script type="text/javascript">
+
+$("#distrib").click(function(){
+	if (Number($("#sel").val())!=0){
+
+			$.post({
+			url:"/doingstake",
+			data:{sum:$("#sel").val()}	
+			}).success(function(data){
+				var player=data;
+				/*return false;*/
+			});
+	
+			$.get({
+			url:"/cardsdistrib"
+			}).success(function(data){
+			var arrcard=data;
+			if (arrcard==="Вы уже взяли 2 карты!"){
+				alert(arrcard);
+			}
+			$("#cardsbody").find("div").each(function(){
+			if($(this).attr("name")===arrcard[0]){
+			$(this).appendTo("#cardstable");
+			$(this).fadeIn(600);
+			}else if ($(this).attr("name")===arrcard[1]){
+			$(this).appendTo("#cardstable");
+			$(this).fadeIn(600);
+			}
+		    });
+		});			
+		}else {
+			alert("Сделайте ставку!");
+		}
+});
+
+	$("#takecard").click(function(){
+	$.get({
+			url:"/takecard"
+			}).success(function(data){
+			var arrcard=data;
+			if (arrcard==="Карты закончились!"){
+				alert(arrcard);
+			}else{
+			for (var i=2; i<arrcard.length;i++){
+			
+			$("#cardsbody").find("div").each(function(){
+			if($(this).attr("name")===arrcard[i]){
+			$(this).appendTo("#cardstable");
+			$(this).fadeIn(600);
+			
+			}
+			});
+			
+			}
+		}
+
+		});
+	});
+
+
+	var playercredit=1500;
+
+	
+	$("#sel").click(function(){
+
+	socket.emit("doingstake",{stake:$("#sel").val()});
+
+		playercredit-=$("#sel").val();
+		$("#playercredit").find("span").text(playercredit);	
+
+	});
+
+	var sumbank=0;
+	var stake=0;
+	var sumresult=0;
+
+	socket.on("doingstake",function(msg){
+		sumbank+=Number(msg.stake);       	
+       	$("#bank").find("span").text(sumbank); 
+       	stake=Number(msg.stake);
+        
+      	});
+
+	var sumresult1=0;
+	var sumresult2=0;
+
+	$("#cleartable").click(function(){
+		
+		socket.emit("zerosum",Number($("#sel").val()));
+
+			$.get({
+			url:"/cleartable"
+			}).success(function(data){
+				var player=data;
+				if (player==="player1"){
+					socket.emit("sumresultplayer1",Number($("#sel").val()));
+					socket.on("sumresultplayer1",function(msg){
+					sumresult1=msg;					    
+      			 	$("#sum").find("span").text(sumresult1);
+					});
+					
+				}else if (player==="player2"){
+					socket.emit("sumresultplayer2",Number($("#sel").val()));
+					socket.on("sumresultplayer2",function(msg){
+					sumresult2=msg;      
+       				$("#sum").find("span").text(sumresult2);
+					});
+				}
+				 $("#sel").val(0);
+			});
+		
+			$("#oponenttable").find("div").each(function(){
+				$(this).appendTo("#cardsbody");
+				$(this).hide();
+				
+			});
+
+			$("#cardstable").find("div").each(function(){
+				$(this).appendTo("#cardsbody");
+				$(this).hide();
+				
+			});
+			/*$("#sel").val(0);*/
+		});
+
+	socket.on("zerosum",function(msg){
+       	sumbank-=msg;       
+       	$("#bank").find("span").text(sumbank); 
+      
+      	});
+
+	
+
+function sendOponCards(){
+		socket.emit("oponcardsdistrib",{cardsamount:2});
+        return false;
+	}
+
+      var socket = io();
+
+
+$("#distrib").click(function(){     
+      		sendOponCards();
+      		return false;
+      	});
+
+socket.on("oponcardsdistrib",function(msg){
+       	$("#oponcards").find("div").eq(0).appendTo("#oponenttable");
+       	$("#oponcards").find("div").eq(1).appendTo("#oponenttable"); 
+      	});
+
+function sendOponCards2(){
+		socket.emit("oponcardstake",{cardsamount:1});
+        return false;
+	}
+
+$("#takecard").click(function(){
+      		sendOponCards2();
+      		return false;
+      	});
+
+
+socket.on("oponcardstake",function(msg){  	
+		$("#oponcards").find("div").eq(0).appendTo("#oponenttable");    	      		
+      });
+
+var oponentarrcards=[];
+
+function getOponCardsOpen(oponentarrcards){
+		socket.emit("oponcardsopen",oponentarrcards);
+        return false;
+	}
+
+$("#skip").click(function(){
+	$.get({
+			url:"/skipwinner"
+			}).success(function(data){
+			var oponentarrcards=data;
+			getOponCardsOpen(oponentarrcards);
+			});
+		return false;
+});
+	socket.on("oponcardsopen",function(msg){ 
+		$("#oponenttable").find("div").each(function(){
+				$(this).appendTo("#oponcards");
+								
+			});
+		
+		var arrcard=[];
+			arrcard=msg;
+		$("#cardsbody").find("div").each(function(){
+			for (var i=0; i<arrcard.length;i++){
+			if($(this).attr("name")===arrcard[i]){
+			$(this).appendTo("#oponenttable");
+			
+			
+			}
+			}
+			
+			}); 
+			 	      		
+      });
+
+		$("#savegame").click(function(){			
+
+			socket.emit("savegame",{mes:"Соперник сохраняет игру!"});
+		});
+
+		socket.on("savegame",function(msg){  	
+		alert(msg.mes);    	      		
+      	});
+
+      	$("#exitgame").click(function(){
+			socket.emit("exitgame",{mes:"Соперник выходит из игры!"});
+			$.get({
+				url:"/exitgame"
+			}).success(function(data){
+				var res=data;
+			});
+		});
+
+      	socket.on("exitgame",function(msg){  	
+		alert(msg.mes);    	      		
+      	});
+
+      	/*socket.on("oponcardsopenmsg",function(msg){  	
+		alert(msg.mes);    	      		
+      	});*/
+
+		
+	</script>
+
+</body>
+</html>
